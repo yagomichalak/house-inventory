@@ -1,5 +1,5 @@
 .inventory-container {
-    background-color: rgb(0,123,255);
+    /* background-color: rgb(0,123,255); */
     border-style: solid;
     border-radius: 5px;
     border-color: black;
@@ -37,4 +37,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 15px;
+}
+
+
+.tbody-data {
+    color: black;
 }

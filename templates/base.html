@@ -1,19 +1,18 @@
 {% load static %}
-
 <!DOCTYPE html>
-
 <html>
-
-<head>
+<head lang="en">
     {% include 'partials/_head.html' %}
     <title>{% block title %}{% endblock %}House Inventory</title>
 </head>
 <body>
     {% include 'partials/_nav.html' %}
-    <main>
+
+	<main class="container mt-4 mb-4">
         {% include 'partials/_messages.html' %}
     </main>
     {% block content %}{% endblock %}
+
     {% include 'partials/_footer.html' %}
 </body>
 </html>

@@ -7,13 +7,12 @@
 {% block content %}
 
 <div class="container">
-    <label class="uppercase text-xl font-bold text-blue-dark">Add a new item</label><br>
     <div class="add-item inventories">
-        <form method="POST" action="" class="">
+        <form method="POST" class="add-item-form">
             {% csrf_token %}
             <div class="form-fields">
                 {{ form|crispy }}
-                <button type="button" class="btn btn-success btn-lg btn-block">+</button>
+                <button type="submit" class="btn btn-success btn-lg btn-block addItemButton">Add a new item</button>
             </div>
         </form>
     </div>
@@ -22,21 +21,23 @@
         {% for category_name, category_values in inventory_categories.items %}
             <div class="inventory-container">
                 <table class="table">
-                    <thead class="thead-light">
+                    <thead class="thead bg-primary">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Item</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for inventory in category_values %}
-                    <tr>
+                    <tr class="tbody-data">
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>{{inventory.name}}</td>
                         <td>{{inventory.quantity}} {{inventory.measure_unit}}</td>
                         <td>{{inventory.price}}</td>
+                        <td><a class="btn btn-danger" href="{% url 'inventory:remove_item' inventory.id %}" role="button">X</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -46,5 +47,5 @@
     </div>
 </div>
 
-
+<script>var csrftoken = '{{ csrf_token }}';</script>
 {% endblock %}
