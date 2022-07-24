@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title%}Inventories | {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="add-item">
+        <form method="POST" action="" class="">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <label class="uppercase text-xl font-bold text-blue-dark">Add a new item</label><br>
+            <button type="button" class="btn btn-success">+</button>
+        </form>
+    </div>
+
+    <div class="inventories">
+        {% for category_name, category_values in inventory_categories.items %}
+            <div class="inventory-container">
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for inventory in category_values %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{inventory.name}}</td>
+                        <td>{{inventory.quantity}} {{inventory.measure_unit}}</td>
+                        <td>{{inventory.price}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
