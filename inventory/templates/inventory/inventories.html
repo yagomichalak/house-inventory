@@ -7,12 +7,14 @@
 {% block content %}
 
 <div class="container">
-    <div class="add-item">
+    <label class="uppercase text-xl font-bold text-blue-dark">Add a new item</label><br>
+    <div class="add-item inventories">
         <form method="POST" action="" class="">
             {% csrf_token %}
-            {{ form|crispy }}
-            <label class="uppercase text-xl font-bold text-blue-dark">Add a new item</label><br>
-            <button type="button" class="btn btn-success">+</button>
+            <div class="form-fields">
+                {{ form|crispy }}
+                <button type="button" class="btn btn-success btn-lg btn-block">+</button>
+            </div>
         </form>
     </div>
 
